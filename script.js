@@ -4,7 +4,7 @@ let playerSelection;
 let playerScore = 0;
 let computerScore = 0;
 
-/* computer chooses fighter (no problems) */
+/* computer chooses fighter */
 function getComputerChoice() {
   let randomNum = Math.floor(Math.random() * 3)
   if (randomNum === 0) {
@@ -17,8 +17,7 @@ function getComputerChoice() {
     computerChoice = 'Unexpected Error in getComputerChoice function';
   }
 }
-
-/* user chooses fighter (no problems) */
+/* user chooses fighter */
 function getPlayerSelection() {
   playerSelection = prompt('Choose between rock, paper or scissors')
   
@@ -34,13 +33,10 @@ function getPlayerSelection() {
     }
   }
 }
-
-/* function that plays a single round of rock paper scissors. takes two parameters playerSelection and computerSelection. returns a string that declares the winner of the round (no problems) */
+/* play a single round of rock paper scissors. returns a string that declares the winner of the round */
 function playRound() {
   getComputerChoice();
-  console.log(computerChoice);
   getPlayerSelection();
-  console.log(playerSelection);
   switch(true) {
     case computerChoice === playerSelection:
       return `It's a draw! You both chose ${computerChoice}.`;
@@ -59,7 +55,6 @@ function playRound() {
       break;
     case computerChoice === 'paper' && playerSelection === 'scissors':
       ++playerScore;
-      console.log(playerScore);
       return `You win! Scissors beat paper.`;
       break;
     case computerChoice === 'scissors' && playerSelection === 'rock':
@@ -75,25 +70,28 @@ function playRound() {
       break;
   }
 }
-
-/* write a new function called game. use the previous function to play a 5 round game that keeps score and reports a winner or loser at the end. */
-/* use a loop to do 5 rounds or call playround function 5 times */
-
-
-function game() {
-let i = 0;
-
-  while (i < 5) {
-    playRound();
-    console.log(playerScore);
-    i++
+/* shows the final result */
+function result() {
+  if (playerScore > computerScore) {
+    console.log(`You won! Maybe we can have a rematch?`)
+  } else if (playerScore < computerScore) {
+    console.log(`You lost. I hope you enjoyed your brief moment of hope before reality came crashing down on you.`)
+  } else {
+    console.log(`It's a draw! We're both winners in our own way.`)
   }
 }
-
-playRound();
-console.log(playerScore);
-console.log(computerScore);
-/* var score and update it every turn */
-
-/* report winner after every round */
-
+/* plays 5 rounds of rock paper scissors, resets score after finishing */
+function game() {
+  let i = 1;
+  
+  while (i < 6) {
+    console.log(`Round ${i}`)
+    console.log(playRound());
+    console.log(`Your score: ${playerScore}. Computer's score: ${computerScore}.`);
+    i++
+  }
+  result();
+  playerScore = 0;
+  computerScore = 0;
+  return 'Hope you had fun, I know I did.'
+}
