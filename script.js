@@ -22,7 +22,7 @@ function getPlayerSelection() {
   playerSelection = prompt('Choose between rock, paper or scissors')
   
   if (!playerSelection) {
-    console.log(`You didn't enter anything. Refresh the page if you wanna try again.`)
+    console.log(`You didn't enter anything. Feel free to try again.`)
   } else if (playerSelection) {
     playerSelection = playerSelection.toLowerCase();
     if (playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors') {
@@ -66,7 +66,7 @@ function playRound() {
       return `You lose! Scissors beat paper.`;
       break;
     default:
-      return `Unexpected error in round function`;
+      return ``;
       break;
   }
 }
@@ -88,6 +88,7 @@ function game() {
     console.log(`Round ${i}`)
     console.log(playRound());
     console.log(`Your score: ${playerScore}. Computer's score: ${computerScore}.`);
+    if (!playerSelection) break;
     i++
   }
   result();
