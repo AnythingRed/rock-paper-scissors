@@ -81,7 +81,7 @@ function result() {
   }
 }
 /* plays 5 rounds of rock paper scissors, resets score after finishing */
-function game() {
+/* function game() {
   let i = 1;
   
   while (i < 6) {
@@ -96,3 +96,7 @@ function game() {
   computerScore = 0;
   return 'Hope you had fun, I know I did.'
 }
+ */
+
+//on hover embiggen picture and border
+const btnChoice = document.querySelectorAll('.choice');

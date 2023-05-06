@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  background-color: #9ab8f8;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  display: flex;
+  justify-content: center;
+}
+.userChoice {
+  display: flex;
+  justify-content: center;
+}
+button {
+  padding: 0;
+  margin: 25px;
+  background-color: #9ab8f8;
+  border: #8599de solid 4px;
+  border-radius: 100px;
+}
+p {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+}
