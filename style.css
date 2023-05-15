@@ -11,16 +11,49 @@ header {
 .userChoice {
   display: flex;
   justify-content: center;
+  margin: 5px;
 }
 button {
   padding: 0;
-  margin: 25px;
+  margin: 4px 20px;
   background-color: #9ab8f8;
-  border: #8599de solid 4px;
+  border: #8599de solid 6px;
   border-radius: 100px;
+  transition: transform 0.7s ease;
+  cursor: pointer;
 }
-p {
+button:hover {
+  transform: scale(1.1);
+  background-color: #8599de;
+}
+h1 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 500;
+  margin: 10px;
+}
+
+.results {
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+   font-size: 26px;
+}
+.score {
   display: flex;
   justify-content: center;
-  font-size: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 16px;
+}
+
+h2 {
+  font-weight: 400;
+  margin: 10px 0;
+}
+.finResult {
+  margin: 20px;
+  font-size: 34px;
+  text-align: center;
+  font-weight: bold;
 }

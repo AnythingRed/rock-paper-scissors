@@ -6,19 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
   <title>Rock Paper Scissors</title>
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <img src="./img/rps.jpg" height="250px">
+    <img src="./img/rps.jpg" alt="rock vs scissors hands" height="250px">
   </header>
   
-  <p>Choose your fighter!</p>
+  <h1>Choose your fighter!</h1>
   <div class="userChoice">
-    <button class="choice"><img src="./img/rock.png" alt="rock hand"></button>
-    <button class="choice"><img src="./img/paper.png" alt="toilet paper rolll"></button>
-    <button class="choice"><img src="./img/scissors.png" alt="scissors"></button>
+    <button class="btn-choice" id="rock"><img src="./img/rock.png" alt="rock hand"></button>
+    <button class="btn-choice" id="paper"><img src="./img/paper.png" alt="toilet paper rolll"></button>
+    <button class="btn-choice" id="scissors"><img src="./img/scissors.png" alt="scissors"></button>
   </div>
+  <div class="score"></div>
+  <div class="results"></div>
+  <div class="finResult"></div>
 </body>
 </html>

@@ -1,102 +1,91 @@
 /* global variables */
 let computerChoice;
-let playerSelection;
+let playerChoice;
 let playerScore = 0;
 let computerScore = 0;
+const scoreEl = document.querySelector('.score');
+const resultsEl = document.querySelector('.results');
+const finResultEl = document.querySelector('.finResult');
 
-/* computer chooses fighter */
 function getComputerChoice() {
-  let randomNum = Math.floor(Math.random() * 3)
-  if (randomNum === 0) {
-    computerChoice = 'rock';
-  } else if (randomNum === 1) {
-    computerChoice = 'paper';
-  } else if (randomNum === 2) {
-    computerChoice = 'scissors';
-  } else {
-    computerChoice = 'Unexpected Error in getComputerChoice function';
-  }
+   const choices = ['rock', 'paper', 'scissors']
+   computerChoice = choices[(Math.floor(Math.random() * choices.length))];
 }
-/* user chooses fighter */
-function getPlayerSelection() {
-  playerSelection = prompt('Choose between rock, paper or scissors')
-  
-  if (!playerSelection) {
-    console.log(`You didn't enter anything. Feel free to try again.`)
-  } else if (playerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    if (playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors') {
-      return playerSelection;
-    } else {
-      console.log(`You have to choose between rock, paper and scissors! Try again.`)
-      getPlayerSelection();
-    }
-  }
+
+function updateScore() {
+   scoreEl.textContent = `Gamer ${playerScore} : ${computerScore} Enemy`
+}
+
+function roundResult() {
+   resultsEl.textContent = playRound();
 }
 /* play a single round of rock paper scissors. returns a string that declares the winner of the round */
 function playRound() {
   getComputerChoice();
-  getPlayerSelection();
   switch(true) {
-    case computerChoice === playerSelection:
-      return `It's a draw! You both chose ${computerChoice}.`;
+    case computerChoice === playerChoice:
+      return `It's a draw. You both chose ${computerChoice}.`;
       break;
-    case computerChoice === 'rock' && playerSelection === 'paper':
-      ++playerScore;
-      return `You win! Paper beats rock.`;
+    case computerChoice === 'rock' && playerChoice === 'paper':
+      playerScore++;
+      return `You win this round. Paper beats rock.`;
       break;
-    case computerChoice === 'rock' && playerSelection === 'scissors':
-      ++computerScore;
-      return `You lose! Rock beats scissors`;
+    case computerChoice === 'rock' && playerChoice === 'scissors':
+      computerScore++;
+      return `You lose this round. Rock beats scissors`;
       break;
-    case computerChoice === 'paper' && playerSelection === 'rock':
-      ++computerScore;
-      return `You lose! Paper beats rock.`;
+    case computerChoice === 'paper' && playerChoice === 'rock':
+      computerScore++;
+      return `You lose this round. Paper beats rock.`;
       break;
-    case computerChoice === 'paper' && playerSelection === 'scissors':
-      ++playerScore;
-      return `You win! Scissors beat paper.`;
+    case computerChoice === 'paper' && playerChoice === 'scissors':
+      playerScore++;
+      return `You win this round. Scissors beat paper.`;
       break;
-    case computerChoice === 'scissors' && playerSelection === 'rock':
-      ++playerScore;
-      return `You win! Rock beats scissors`;
+    case computerChoice === 'scissors' && playerChoice === 'rock':
+      playerScore++;
+      return `You win this round. Rock beats scissors`;
       break;
-    case computerChoice === 'scissors' && playerSelection === 'paper':
-      ++computerScore;
-      return `You lose! Scissors beat paper.`;
+    case computerChoice === 'scissors' && playerChoice === 'paper':
+      computerScore++;
+      return `You lose this round. Scissors beat paper.`;
       break;
     default:
       return ``;
       break;
   }
 }
-/* shows the final result */
-function result() {
-  if (playerScore > computerScore) {
-    console.log(`You won! Maybe we can have a rematch?`)
-  } else if (playerScore < computerScore) {
-    console.log(`You lost. I hope you enjoyed your brief moment of hope before reality came crashing down on you.`)
-  } else {
-    console.log(`It's a draw! We're both winners in our own way.`)
-  }
-}
-/* plays 5 rounds of rock paper scissors, resets score after finishing */
-/* function game() {
-  let i = 1;
-  
-  while (i < 6) {
-    console.log(`Round ${i}`)
-    console.log(playRound());
-    console.log(`Your score: ${playerScore}. Computer's score: ${computerScore}.`);
-    if (!playerSelection) break;
-    i++
-  }
-  result();
-  playerScore = 0;
-  computerScore = 0;
-  return 'Hope you had fun, I know I did.'
-}
- */
 
-//on hover embiggen picture and border
-const btnChoice = document.querySelectorAll('.choice');
+function showFinResult() {
+   if (playerScore === 5 && computerScore === 5) {
+      finResultEl.textContent = `It's a draw! We're both winners in our own way.`;
+   } else if (computerScore === 5) {
+      finResultEl.textContent = `You lost. I hope you enjoyed your brief moment of hope before reality came crashing down on you.`;
+   } else  if (playerScore === 5) {
+      finResultEl.textContent = `You won! Maybe we can have a rematch?`;
+   }
+}
+
+function game() {
+   roundResult();
+   updateScore();
+   showFinResult();
+}
+
+const btnRock = document.querySelector('#rock');
+btnRock.addEventListener('click', () => {
+   playerChoice = 'rock';
+   game();
+});
+
+const btnPaper = document.querySelector('#paper');
+btnPaper.addEventListener('click', () => {
+   playerChoice = 'paper';
+   game();
+});
+
+const btnScissors = document.querySelector('#scissors');
+btnScissors.addEventListener('click', () => {
+   playerChoice = 'scissors';
+   game();
+});
